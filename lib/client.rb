@@ -7,7 +7,7 @@ class Client
   end
 
   def search(value, field='full_name')
-    @file.select{|record| record['full_name'] == value}
+    @file.select{|record| record[field] == value}
   end
 
   def check_duplicates
