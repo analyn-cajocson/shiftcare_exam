@@ -3,7 +3,7 @@ require 'client'
 describe Client do
 
   before do
-    @client = Client.new('clients.json')
+    @client = Client.new('../clients.json')
   end
 
   describe '#search' do
