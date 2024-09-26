@@ -2,8 +2,9 @@ require 'json'
 
 class Client
 
-  def initialize(file='clients.json')
-    @file = JSON.parse(File.read(file))
+  def initialize(file='../clients.json')  # Adjust path to point one level up
+    file_path = File.join(File.dirname(__FILE__), file)
+    @file = JSON.parse(File.read(file_path))
   end
 
   def search(value, field='full_name')
