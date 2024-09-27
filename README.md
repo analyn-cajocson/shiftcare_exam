@@ -1,96 +1,106 @@
 # ShiftCare Technical Challenge
 
-## Pre-requisite
+## Getting Started
+### Prerequisites
 ```
 ruby 3.2.2
 ```
-## How to setup this project
-### Clone this repo
-```
-git@github.com:analyn-cajocson/shiftcare_exam.git
-```
-
-### Go to the Project directory
-```
-cd shiftcare_exam
+### Installation
+1. Clone the repo
+```bash
+~ git clone git@github.com:analyn-cajocson/shiftcare_exam.git
 ```
 
-## Run the test
-```
-bundle exec rspec
-```
-
-## Run the application
-### Using the GEM
-Install this gem:
-```
-gem install ./shiftcare_exam-1.0.0.gem 
-
+2. Go to the Project directory
+```bash
+~ cd shiftcare_exam
 ```
 
-Use Interactive Ruby:
+### Usage
+**Run the test**
+```bash
+~ bundle install
+~ bundle exec rspec
 ```
-irb
 
+<details>
+
+<summary>Option 1: Using the gem</summary>
+
+1. Install this gem:
+```bash
+~ gem install ./shiftcare_exam-1.0.0.gem 
 ```
 
-### #search
+2. Use Interactive Ruby:
+```bash
+~ irb
 ```
-require "shiftcare_exam"
+
+**#search**
+```ruby
+~ require "shiftcare_exam"
  
-client = Client.new
-client.search("John Doe")  #this will use the default search field full_name
+~ client = Client.new
+~ client.search("John Doe")  #this will use the default search field full_name
 ```
 You can also specify the search field:
-```
-require "shiftcare_exam"
+```ruby
+~ require "shiftcare_exam"
 
-client = Client.new
-client.search("john.doe@gmail.com", "email")
-```
-
-### #check_duplicates
-```
-require "shiftcare_exam"
-
-client = Client.new
-client.check_duplicates
+~ client = Client.new
+~ client.search("john.doe@gmail.com", "email")
 ```
 
-### Using other JSON file
-```
-require "shiftcare_exam"
-require "json"
+**#check_duplicates**
+```ruby
+~ require "shiftcare_exam"
 
-json_file_path = File.expand_path("~/path/to/your/file.json")
-client = Client.new(json_file_path)
-
+~ client = Client.new
+~ client.check_duplicates
 ```
-# Using the command line
-### --help
+
+**Using other JSON file**
+```ruby
+~ require "shiftcare_exam"
+~ require "json"
+
+~ json_file_path = File.expand_path("~/path/to/your/file.json")
+~ client = Client.new(json_file_path)
+```
+</details>
+
+<details>
+
+<summary>Option 2: Using the command line</summary>
+
+**--help**
+
 Check the available options
-```
-bin/client_search -h
+```bash
+~ bin/client_search -h
 ```
 
-### #search
-```
-bin/client_search -v "John Doe"  #this will use the default search field full_name
+**#search**
+```bash
+~ bin/client_search -v "John Doe"  #this will use the default search field full_name
 ```
 You can also specify the search field:
-```
-bin/client_search -v "john.doe@gmail.com" -f "email"
-```
-
-### #check_duplicates
-```
-bin/client_duplicates
+```bash
+~ bin/client_search -v "john.doe@gmail.com" -f "email"
 ```
 
-### Using other JSON file
+**#check_duplicates**
+```bash
+~ bin/client_duplicates
+```
+
+**Using other JSON file**
+
 Use the -j options in running the command
-```
-bin/client_search -v "john.doe@gmail.com" -f "email" -j ~/Downloads/new_clients.json
+```bash
+~ bin/client_search -v "john.doe@gmail.com" -f "email" -j ~/path/to/your/file.json
 
-bin/client_duplicates  -j ~/Downloads/new_clients.json
+~ bin/client_duplicates  -j ~/path/to/your/file.json
 ```
+</details>
