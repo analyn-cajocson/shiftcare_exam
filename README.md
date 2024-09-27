@@ -20,30 +20,77 @@ cd shiftcare_exam
 bundle exec rspec
 ```
 
-## Available Commands
-### #search
-Open the `lib/client.rb` file and add this code at the end of the file:
+## Run the application
+### Using the GEM
+Install this gem:
 ```
-client = Client.new #this will use the default clients.json file
-result = client.search("John Doe")  #this will use the default search field full_name
+gem install ./shiftcare_exam-1.0.0.gem 
+
+```
+
+Use Interactive Ruby:
+```
+irb
+
+```
+
+### #search
+```
+require "shiftcare_exam"
+ 
+client = Client.new
+client.search("John Doe")  #this will use the default search field full_name
 ```
 You can also specify the search field:
 ```
-client = Client.new #this will use the default clients.json file
-result = client.search("john.doe@gmail.com", "email")
-```
+require "shiftcare_exam"
 
-Save your changes, then run the following command in the terminal:
-```
-ruby lib/client.rb
+client = Client.new
+client.search("john.doe@gmail.com", "email")
 ```
 
 ### #check_duplicates
-Open the `lib/client.rb` file and add this code at the end of the file:
 ```
-client = Client.new #this will use the default clients.json file
-result = client.check_duplicates
+require "shiftcare_exam"
+
+client = Client.new
+client.check_duplicates
 ```
-Save your changes, then run the following command in the terminal:
+
+### Using other JSON file
 ```
-ruby lib/client.rb
+require "shiftcare_exam"
+require "json"
+
+json_file_path = File.expand_path("~/path/to/your/file.json")
+client = Client.new(json_file_path)
+
+```
+# Using the command line
+### --help
+Check the available options
+```
+bin/client_search -h
+```
+
+### #search
+```
+bin/client_search -v "John Doe"  #this will use the default search field full_name
+```
+You can also specify the search field:
+```
+bin/client_search -v "john.doe@gmail.com" -f "email"
+```
+
+### #check_duplicates
+```
+bin/client_duplicates
+```
+
+### Using other JSON file
+Use the -j options in running the command
+```
+bin/client_search -v "john.doe@gmail.com" -f "email" -j ~/Downloads/new_clients.json
+
+bin/client_duplicates  -j ~/Downloads/new_clients.json
+```

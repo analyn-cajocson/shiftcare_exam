@@ -2,9 +2,8 @@ require 'json'
 
 class Client
 
-  def initialize(file='../clients.json')  # Adjust path to point one level up
-    file_path = File.join(File.dirname(__FILE__), file)
-    @file = JSON.parse(File.read(file_path))
+  def initialize(json_file='./clients.json')
+    @file = load_json_file(json_file)
   end
 
   def search(value, field='full_name')
@@ -20,6 +19,19 @@ class Client
   end
 
   private
+    def load_json_file(file_path)
+      json_data = read_json_file(file_path)
+      JSON.parse(json_data)
+    rescue JSON::ParserError => e
+      raise JSON::ParserError, "Error parsing JSON: #{e.message}"
+    rescue Errno::ENOENT
+      raise Errno::ENOENT, "File not found or inaccessible: #{file_path}"
+    end
+
+    def read_json_file(file_path)
+      File.read(file_path)
+    end
+
     def success_response(data)
       {
         "status" => "success",

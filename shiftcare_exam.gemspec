@@ -8,4 +8,5 @@ Gem::Specification.new do |s|
   s.files       = Dir['Gemfile', '{lib,spec}/**/*', 'README*', 'clients.json']
   s.homepage    = "https://github.com/analyn-cajocson/shiftcare_exam"
   s.add_development_dependency "rspec", '~> 3.13'
+  s.executables = ['shiftcare_exam']
 end

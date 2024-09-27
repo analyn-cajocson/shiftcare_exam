@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+require 'optparse'
+require_relative '../lib/shiftcare_exam'
+
+options = {}
+
+parser = OptionParser.new do |parser|
+  parser.on("-v", "--value VALUE", "Search this value") do |value|
+    options[:value] = value
+  end
+
+  parser.on("-f", "--field FIELD", "Search using this field") do |field|
+    options[:field] = field
+  end
+
+  parser.on("-j", "--json_file JSON FILE", "Use this json file instead") do |json_file|
+    options[:json_file] = json_file
+  end
+end
+
+parser.parse!(into: options)
+
+client = options[:json_file] ? Client.new(options[:json_file]) : Client.new
+
+if options[:value]
+  if options[:field]
+    result = client.search(options[:value], options[:field])
+  else
+    result = client.search(options[:value])
+  end
+  puts result
+else
+  puts "Error: Missing required argument -v"
+  puts parser
+  exit 1
+end
