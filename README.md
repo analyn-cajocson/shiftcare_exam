@@ -74,13 +74,6 @@ You can also specify the search field:
 
 <summary>Option 2: Using the command line</summary>
 
-**--help**
-
-Check the available options
-```bash
-~ bin/client_search -h
-```
-
 **#search**
 ```bash
 ~ bin/client_search -v "John Doe"  #this will use the default search field full_name
